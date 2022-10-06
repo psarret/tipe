@@ -31,7 +31,6 @@ int main()
   int * voisin = (int*)malloc(2*sizeof(int));
   node source = {{"s",10.0}, 1};
   node consomateur = {{"c",-1}, 2};
-
   
   return 0;
 }
