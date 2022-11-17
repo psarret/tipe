@@ -1,2 +1,2 @@
 # tipe
-Monsieur Jourdan a dit que la description on s'en foutait, alors je m'en fout 
+C'est bon, le fichier est lu :) 
