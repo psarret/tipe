@@ -43,6 +43,10 @@ void set_power_line(node * source, node * conso, int adj[5][5])
 }
 
 
+/*fonction pour la fluctuation */
+
+
+
 void print_mat_adj(int ajd[5][5])
 {
   for(int i=0; i<5; i++)
@@ -62,7 +66,7 @@ void test ()
       system("clear");
       printf("test %d",i);
       fflush(stdout);
-      sleep(1);
+      sleep(9);
     }
   
 }
@@ -82,25 +86,23 @@ int main()
   node consomateur = {2,'c',-1.0};
   */
   node * source1 = create_node(1,'n',10.0);
-  node * consomateur2 = create_node(2,'c',-1.0);
+  node * source2 = create_node(2,'n',10.0);
   node * consomateur3 = create_node(3,'c',-3.0);
-  node * consomateur4 = create_node(4,'c',-9.0);
+  node * consomateur4 = create_node(4,'c',-2.0);
   node * consomateur5 = create_node(5,'c',-1.0);
   
-  set_power_line(source1,consomateur2,mat_adj);
+  set_power_line(source1,consomateur3,mat_adj);
+  set_power_line(source2,consomateur4,mat_adj);
   set_power_line(source1,consomateur3,mat_adj);
   set_power_line(source1,consomateur4,mat_adj);
   set_power_line(source1,consomateur5,mat_adj);
   
   printf("débit source : %f\n",source1->debit);
   print_mat_adj(mat_adj);
-  test();
-
-/*
+  /*
 
 system("clear") 
 getchar()
-
 */
   
   return 0;
