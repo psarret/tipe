@@ -1,1 +1,14 @@
-regrouper les sources en un marché commun
+eolien -> production variable 
+nucleaire -> production fixe
+barrage -> production adaptative
+
+_________________________________________________
+|liste source         |liste consommateur       |
+|_____________________|_________________________|
+|voir variation       |voir variation de la     |
+|de la production     |consommation             |
+|_____________________|_________________________|
+
+
+
+>>> messages d'événements 

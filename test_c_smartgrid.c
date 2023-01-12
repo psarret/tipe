@@ -2,14 +2,16 @@
 #include <stdlib.h>
 #include <time.h>
 #include <unistd.h>
+#include <assert.h>
 
 typedef struct node
 {
   int id;
   char type;/*type : 
-	      e = éolien
-	      n = nucléaire
-	      ...
+	      e = éolien -> prod variable
+	      n = nucléaire -> prod fixe
+	      b = barrage -> prod adaptative
+	      c = consommateur
 	    */
   
   double debit; /*positif si c'est une source, negatif si c'est un consomateur*/
@@ -19,6 +21,7 @@ typedef struct node
 
 node * create_node(int id, char type, double debit)
 {
+  if(type == 'c'){assert(debit < 0);}
   node * node = malloc(sizeof(node));
   node->id = id;
   node->type = type;
@@ -47,6 +50,28 @@ void set_power_line(node * source, node * conso, int adj[5][5])
 
 
 
+void var_conso_prod(node element)
+{
+  assert(element.type != 'n');
+  
+  if(element.type == 'c')
+    {
+      /*variation pour le consommateur*/
+    }
+
+  if(element.type == 'e')
+    {
+      /*variation pour l'eolien */
+    }
+
+  if(element.type == 'b')
+    {
+      /*variation pour le barage*/
+    }
+}
+
+
+
 void print_mat_adj(int ajd[5][5])
 {
   for(int i=0; i<5; i++)
@@ -66,13 +91,14 @@ void test ()
       system("clear");
       printf("test %d",i);
       fflush(stdout);
-      sleep(9);
+      sleep(1);
     }
-  
 }
 
 int main()
 {
+  srand(time(NULL));
+  
   int mat_adj [5][5] =
     {
       {0,0,0,0,0},
@@ -81,10 +107,18 @@ int main()
       {0,0,0,0,0},
       {0,0,0,0,0},
     };
+  
   /*
-  node source = {1,'n',10.0};
-  node consomateur = {2,'c',-1.0};
+    node source = {1,'n',10.0};
+    node consomateur = {2,'c',-1.0};
+    
+    
+    mettre tout les noeuds dans une liste 
+    integrer une gestion de la consommation en fonction de l'heure ? (plus de consommation à certain horaires)
+    gérer la resistance des lignes 
   */
+  
+  
   node * source1 = create_node(1,'n',10.0);
   node * source2 = create_node(2,'n',10.0);
   node * consomateur3 = create_node(3,'c',-3.0);
@@ -99,6 +133,7 @@ int main()
   
   printf("débit source : %f\n",source1->debit);
   print_mat_adj(mat_adj);
+  test();
   /*
 
 system("clear") 
